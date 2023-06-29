@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,300&display=swap");
+.accounts {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 35px;
+  margin: 0 0 20px 0;
+}
+.accounts p {
+  font-family: Roboto;
+  font-size: 31px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 31px;
+  text-align: right;
+  color: black;
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  .accounts {
+    justify-content: center;
+    padding-right: 0;
+    margin-bottom: 15px;
+    padding-top: 30px;
+  }
+  .accounts p {
+    font-size: 20px;
+    line-height: 31px;
+  }
+  .accounts img {
+    width: 38px;
+    height: 40px;
+  }
+}
+
+/*# sourceMappingURL=Accounts.css.map */
