@@ -1,9 +1,12 @@
 import "./App.scss";
-
+import { Accounts } from "./components/Accounts/Accounts";
+import { Header } from "./components/Header/Header";
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <Header />
+      {/*<Game />*/}
+      <Accounts />
     </div>
   );
 }
