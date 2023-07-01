@@ -4,7 +4,7 @@ import { Header } from "./components/Header/Header";
 import { Game } from "./components/Game/Game";
 function App() {
   return (
-    <div className="pAp">
+    <div className="App">
       <Header />
       <Game />
       <Accounts />
