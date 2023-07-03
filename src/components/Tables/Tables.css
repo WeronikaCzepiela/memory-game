@@ -2,11 +2,13 @@
 .tables {
   background-color: #5A2734;
   color: white;
-  width: 396px;
-  height: 127px;
   text-align: center;
   border-radius: 32px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  width: 325px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
 }
 
 .text {
@@ -19,6 +21,22 @@
 .number {
   font-family: Roboto;
   margin: 0;
+  font-size: 24px;
+  padding-top: 25px;
+  padding-left: 10px;
+}
+
+.tables-desktop {
+  width: 396px;
+  height: 127px;
+  display: block;
+}
+
+.text-desktop {
+  padding-top: 25px;
+}
+
+.number-desktop {
   font-size: 36px;
   padding-top: 10px;
 }
