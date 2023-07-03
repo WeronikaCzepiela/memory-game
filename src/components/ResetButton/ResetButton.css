@@ -4,7 +4,7 @@ button {
   background-color: #AC1C40;
   color: white;
   width: 328px;
-  height: 82px;
+  height: 65px;
   text-align: center;
   display: flex;
   align-content: center;
@@ -24,6 +24,13 @@ p {
   font-family: Roboto;
   font-size: 24px;
   margin: 0;
+  padding-top: 15px;
+}
+
+.reset-button-desktop {
+  height: 82px;
+}
+.reset-button-desktop p {
   padding-top: 25px;
 }
 
