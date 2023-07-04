@@ -1,15 +1,15 @@
-import "./App.scss";
-import { Accounts } from "./components/Accounts/Accounts";
-import { Header } from "./components/Header/Header";
-import { Game } from "./components/Game/Game";
+import './App.scss'
+import { Accounts } from './components/Accounts/Accounts'
+import { Header } from './components/Header/Header'
+import { Game } from './components/Game/Game'
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Header />
       <Game />
       <Accounts />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
