@@ -3,7 +3,7 @@ import './Header.scss'
 import { ResetButton } from '../ResetButton/ResetButton'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
 
-export const Header = () => {
+export const Header = ({ moves }) => {
   const { width } = useWindowDimensions()
 
   return (
@@ -11,7 +11,7 @@ export const Header = () => {
     <div className={`header ${width > 600 && 'header-desktop'}`}>
       <Tables text={'Score:'} number={'5'} />
       {width > 600 && <ResetButton />}
-      <Tables text={'Moves:'} number={'7'} />
+      <Tables text={'Moves:'} number={moves} />
     </div>
   )
 }
