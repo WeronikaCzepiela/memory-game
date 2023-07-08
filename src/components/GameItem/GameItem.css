@@ -12,8 +12,8 @@
   height: 64px;
 }
 
-.dupa {
-  transform: scale(0.5) translateX(-75%) translateY(-75%);
+.item-clicked {
+  background-color: #853F5D;
 }
 
 /*# sourceMappingURL=GameItem.css.map */
