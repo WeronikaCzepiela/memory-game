@@ -33,6 +33,11 @@ const App = () => {
     setBlocks(newBlocks)
   }
 
+  const removeCompletedBlocks = (vector, id) => {
+    // const newBlocks = blocks.filter((block) =>)
+    //ToDo
+  }
+
   return (
     <div className='App'>
       <Header moves={moves} />
