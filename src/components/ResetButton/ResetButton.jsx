@@ -1,10 +1,11 @@
 import './ResetButton.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
 
-const handleReset = () => {}
-
-export const ResetButton = () => {
+export const ResetButton = ({ restart }) => {
   const { width } = useWindowDimensions()
+  const handleReset = () => {
+    restart()
+  }
 
   return (
     <button

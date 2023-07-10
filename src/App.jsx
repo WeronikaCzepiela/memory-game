@@ -10,17 +10,17 @@ const App = () => {
       id: idx,
       clicked: false,
       complete: false,
-      vector: 'tower',
+      vector: String(idx % 8),
     })),
   )
   const [moves, setMoves] = useState(0)
+  const [score, setScore] = useState(0)
   const updateMoves = () => {
     setMoves(moves + 1)
   }
 
   const changeBlockOnClicked = (id) => {
     const newBlocks = blocks.map((block) => {
-      // console.log(block.id)
       if (block.id === id) {
         return {
           ...block,
@@ -34,15 +34,57 @@ const App = () => {
   }
 
   const removeCompletedBlocks = (vector, id) => {
-    // const newBlocks = blocks.filter((block) =>)
-    //ToDo
+    const updatedMoves = moves + 1
+    let newBlocks = []
+    if (updatedMoves % 2 === 0) {
+      const clickedBlock = blocks.find((block) => block.clicked)
+      if (clickedBlock.vector === vector) {
+        setScore(score + 1)
+        newBlocks = blocks.map((block) => {
+          if (block.id === clickedBlock.id || block.id === id) {
+            return {
+              ...block,
+              complete: true,
+            }
+          }
+          return block
+        })
+      } else {
+        newBlocks = blocks.map((block) => {
+          return {
+            ...block,
+            clicked: false,
+          }
+        })
+      }
+      setBlocks(newBlocks)
+    }
+  }
+
+  const onClick = (vector, id) => {
+    updateMoves()
+    changeBlockOnClicked(id)
+    removeCompletedBlocks(vector, id)
+  }
+
+  const restart = () => {
+    setScore(0)
+    setMoves(0)
+    setBlocks(
+      Array.from({ length: 16 }).map((item, idx) => ({
+        id: idx,
+        clicked: false,
+        complete: false,
+        vector: String(idx % 8),
+      })),
+    )
   }
 
   return (
     <div className='App'>
-      <Header moves={moves} />
-      <Game blocks={blocks} updateMoves={updateMoves} changeBlockOnClicked={changeBlockOnClicked} />
-      <Accounts />
+      <Header score={score} moves={moves} restart={restart} />
+      <Game blocks={blocks} onClick={onClick} />
+      <Accounts restart={restart} />
     </div>
   )
 }

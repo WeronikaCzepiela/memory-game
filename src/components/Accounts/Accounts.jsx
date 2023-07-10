@@ -4,12 +4,12 @@ import './Accounts.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
 import { ResetButton } from '../ResetButton/ResetButton'
 
-export const Accounts = () => {
+export const Accounts = ({ restart }) => {
   const { width } = useWindowDimensions()
 
   return (
     <div className={'bottom'}>
-      {width < 600 && <ResetButton />}
+      {width < 600 && <ResetButton restart={restart} />}
       <div className={`accounts ${width > 600 && 'accounts-desktop'}`}>
         <p>Check my accounts</p>
         <a target={'_blank'} href={'https://github.com/WeronikaCzepiela'}>

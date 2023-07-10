@@ -16,4 +16,8 @@
   background-color: #853F5D;
 }
 
+.item-complete {
+  opacity: 0;
+}
+
 /*# sourceMappingURL=GameItem.css.map */

@@ -1,24 +1,18 @@
 import './GameItem.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
 
-export const GameItem = ({
-  id,
-  order,
-  vector,
-  complete,
-  clicked,
-  updateMoves,
-  changeBlockOnClicked,
-}) => {
+export const GameItem = ({ id, order, vector, complete, clicked, onClick }) => {
   const handleOnClick = () => {
-    updateMoves()
-    changeBlockOnClicked(id)
-    // console.log(idx)
+    onClick(vector, id)
   }
   const { width } = useWindowDimensions()
   return (
     <div
-      className={`item ${width > 600 && 'item-desktop'} ${clicked ? 'item-clicked' : ''}`}
-      onClick={handleOnClick}></div>
+      className={`item ${width > 600 && 'item-desktop'} ${clicked ? 'item-clicked' : ''} ${
+        complete ? 'item-complete' : ''
+      }`}
+      onClick={handleOnClick}>
+      {vector}
+    </div>
   )
 }
