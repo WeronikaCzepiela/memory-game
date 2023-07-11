@@ -31,9 +31,11 @@
 }
 
 .accounts-desktop {
-  margin-right: 35px;
   justify-content: flex-end;
+  margin: 0;
+  margin-right: 35px;
   gap: 16px;
+  padding-bottom: 15px;
 }
 .accounts-desktop p {
   font-size: 31px;

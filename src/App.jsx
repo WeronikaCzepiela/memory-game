@@ -1,92 +1,107 @@
 import './App.scss'
-import { Accounts } from './components/Accounts/Accounts'
-import { Header } from './components/Header/Header'
-import { Game } from './components/Game/Game'
-import { useState } from 'react'
+import {Accounts} from './components/Accounts/Accounts'
+import {Header} from './components/Header/Header'
+import {Game} from './components/Game/Game'
+import {useEffect, useState} from 'react'
+import {useWindowDimensions} from './utils/hookes/useWindowDimensions'
+import {click} from "@testing-library/user-event/dist/click";
 
 const App = () => {
-  const [blocks, setBlocks] = useState(
-    Array.from({ length: 16 }).map((item, idx) => ({
-      id: idx,
-      clicked: false,
-      complete: false,
-      vector: String(idx % 8),
-    })),
-  )
-  const [moves, setMoves] = useState(0)
-  const [score, setScore] = useState(0)
-  const updateMoves = () => {
-    setMoves(moves + 1)
-  }
+    const {width} = useWindowDimensions()
+    const [blocks, setBlocks] = useState([])
+    const [moves, setMoves] = useState(0)
+    const [score, setScore] = useState(0)
 
-  const changeBlockOnClicked = (id) => {
-    const newBlocks = blocks.map((block) => {
-      if (block.id === id) {
-        return {
-          ...block,
-          clicked: !block.clicked,
-        }
-      }
-      return block
-    })
-
-    setBlocks(newBlocks)
-  }
-
-  const removeCompletedBlocks = (vector, id) => {
-    const updatedMoves = moves + 1
-    let newBlocks = []
-    if (updatedMoves % 2 === 0) {
-      const clickedBlock = blocks.find((block) => block.clicked)
-      if (clickedBlock.vector === vector) {
-        setScore(score + 1)
-        newBlocks = blocks.map((block) => {
-          if (block.id === clickedBlock.id || block.id === id) {
-            return {
-              ...block,
-              complete: true,
-            }
-          }
-          return block
-        })
-      } else {
-        newBlocks = blocks.map((block) => {
-          return {
-            ...block,
-            clicked: false,
-          }
-        })
-      }
-      setBlocks(newBlocks)
+    const lengthOfArray = () => {
+        if (width > 600) return 32
+        else return 16
     }
-  }
 
-  const onClick = (vector, id) => {
-    updateMoves()
-    changeBlockOnClicked(id)
-    removeCompletedBlocks(vector, id)
-  }
+    const onClick = (vector, id) => {
+        updateMoves()
+        let updatedBlocks
+        updatedBlocks = changeBlockOnClicked(id)
+        updatedBlocks = removeCompletedBlocks(vector, id, updatedBlocks)
+        setBlocks(updatedBlocks)
+    }
 
-  const restart = () => {
-    setScore(0)
-    setMoves(0)
-    setBlocks(
-      Array.from({ length: 16 }).map((item, idx) => ({
-        id: idx,
-        clicked: false,
-        complete: false,
-        vector: String(idx % 8),
-      })),
+    const updateMoves = () => {
+        setMoves(moves + 1)
+    }
+
+    const changeBlockOnClicked = (id) => {
+        let newBlocks;
+        newBlocks = blocks.map((block) => {
+            if (block.id === id) {
+                return {
+                    ...block,
+                    clicked: !block.clicked,
+                }
+            }
+            return block
+        });
+        return newBlocks
+    }
+
+    const removeCompletedBlocks = (vector, id, updatedBlocks) => {
+        const updatedMoves = moves + 1
+        let newBlocks = []
+        if (updatedMoves % 2 === 0) {
+            const clickedBlock = updatedBlocks.find((block) => block.clicked && !block.complete)
+            if (clickedBlock.vector === vector) {
+                setScore(score + 1)
+                newBlocks = updatedBlocks.map((block) => {
+                    if (block.id === clickedBlock.id || block.id === id) {
+                        return {
+                            ...block,
+                            complete: true,
+                        }
+                    }
+                    return block
+                })
+            } else {
+                newBlocks = updatedBlocks.map((block) => {
+                    return {
+                        ...block,
+                        clicked: false,
+                    }
+                })
+            }
+            return newBlocks
+        }
+        return updatedBlocks
+    }
+
+    const restart = () => {
+        setScore(0)
+        setMoves(0)
+        setBlocks(
+            Array.from({length: lengthOfArray()}).map((item, idx) => ({
+                id: idx,
+                clicked: false,
+                complete: false,
+                vector: String(idx % 8),
+            })),
+        )
+    }
+
+    useEffect(() => {
+        if (width && !blocks.length)
+            setBlocks(Array.from({length: lengthOfArray()}).map((item, idx) => ({
+                id: idx,
+                clicked: false,
+                complete: false,
+                vector: String(idx % 8),
+            })))
+    }, [width])
+
+    return (
+        <div className='App'>
+            <Header score={score} moves={moves} restart={restart}/>
+            <Game blocks={blocks} onClick={onClick}/>
+            <Accounts restart={restart}/>
+        </div>
     )
-  }
-
-  return (
-    <div className='App'>
-      <Header score={score} moves={moves} restart={restart} />
-      <Game blocks={blocks} onClick={onClick} />
-      <Accounts restart={restart} />
-    </div>
-  )
 }
 
 export default App
