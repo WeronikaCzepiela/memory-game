@@ -4,6 +4,7 @@ import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
 
 export const Game = ({ blocks, onClick }) => {
   const { width } = useWindowDimensions()
+
   return (
     <div className={`game ${width > 600 && 'game-desktop'}`}>
       {blocks.map((item) => (

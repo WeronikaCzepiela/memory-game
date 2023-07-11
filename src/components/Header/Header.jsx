@@ -7,7 +7,6 @@ export const Header = ({ score, moves, restart }) => {
   const { width } = useWindowDimensions()
 
   return (
-    // <div className={width > 600 ? 'header' : 'dupa'}>
     <div className={`header ${width > 600 && 'header-desktop'}`}>
       <Tables text={'Score:'} number={score} />
       {width > 600 && <ResetButton restart={restart} />}
