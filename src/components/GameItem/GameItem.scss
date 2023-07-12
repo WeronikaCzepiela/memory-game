@@ -5,6 +5,9 @@
   border-radius: 8px;
   box-shadow: 0px 4px 4px 0px #00000040;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon {
   width: 64px;
@@ -16,4 +19,16 @@
 
 .item-complete {
   opacity: 0;
+}
+
+.vector {
+  opacity: 0;
+}
+
+.vector-complete {
+  opacity: 0;
+}
+
+.vector-clicked {
+  opacity: 100;
 }
