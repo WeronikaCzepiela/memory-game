@@ -19,6 +19,8 @@
 
 .item-complete {
   opacity: 0;
+  user-select: none;
+  cursor: auto;
 }
 
 .vector {

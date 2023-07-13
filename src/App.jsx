@@ -11,16 +11,19 @@ const App = () => {
   const [moves, setMoves] = useState(0)
   const [score, setScore] = useState(0)
 
-  const onClick = (vector, id) => {
-    updateMoves()
+  const onClick = (vector, id, complete) => {
+    updateMoves(complete)
     let updatedBlocks
     updatedBlocks = changeBlockOnClicked(id)
+    // setTimeout(removeCompletedBlocks, 3000, vector, id, updatedBlocks)
     updatedBlocks = removeCompletedBlocks(vector, id, updatedBlocks)
     setBlocks(updatedBlocks)
   }
 
-  const updateMoves = () => {
-    setMoves(moves + 1)
+  const updateMoves = (complete) => {
+    if (!complete) {
+      setMoves(moves + 1)
+    }
   }
 
   const changeBlockOnClicked = (id) => {
@@ -40,12 +43,12 @@ const App = () => {
   const removeCompletedBlocks = (vector, id, updatedBlocks) => {
     const updatedMoves = moves + 1
     let newBlocks = []
-    if (updatedMoves % 2 === 0) {
-      const clickedBlock = updatedBlocks.find((block) => block.clicked && !block.complete)
-      if (clickedBlock.vector === vector) {
+    const clickedBlock = updatedBlocks.filter((block) => block.clicked && !block.complete)
+    if (updatedMoves % 2 === 0 && clickedBlock.length !== 0) {
+      if (clickedBlock[0].vector === clickedBlock[1].vector) {
         setScore(score + 1)
         newBlocks = updatedBlocks.map((block) => {
-          if (block.id === clickedBlock.id || block.id === id) {
+          if (block.id === clickedBlock[0].id || block.id === clickedBlock[1].id) {
             return {
               ...block,
               complete: true,
