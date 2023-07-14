@@ -4,6 +4,7 @@ import { Header } from './components/Header/Header'
 import { Game } from './components/Game/Game'
 import { useEffect, useState } from 'react'
 import { useWindowDimensions } from './utils/hookes/useWindowDimensions'
+import { vectorIcons } from './utils/IconsBlock'
 
 const App = () => {
   const { width } = useWindowDimensions()
@@ -15,9 +16,10 @@ const App = () => {
     updateMoves(complete)
     let updatedBlocks
     updatedBlocks = changeBlockOnClicked(id)
-    // setTimeout(removeCompletedBlocks, 3000, vector, id, updatedBlocks)
+    // updatedBlocks = setTimeout(removeCompletedBlocks, 3000, vector, id, updatedBlocks)
     updatedBlocks = removeCompletedBlocks(vector, id, updatedBlocks)
     setBlocks(updatedBlocks)
+    getVector()
   }
 
   const updateMoves = (complete) => {
@@ -74,6 +76,23 @@ const App = () => {
     else return 16
   }
 
+  const getVector = () => {
+    const length = 8 //TODO
+    let chosenVectors = Array.from({ length: 1 }).map(
+      () => vectorIcons[Math.floor(Math.random() * vectorIcons.length)].vector,
+    )
+    while (chosenVectors.length !== length) {
+      const randomVector = String(
+        vectorIcons[Math.floor(Math.random() * vectorIcons.length)].vector,
+      )
+      if (chosenVectors.filter((element) => element === randomVector).length === 0) {
+        chosenVectors.push(randomVector)
+      }
+    }
+    chosenVectors = [...chosenVectors, ...chosenVectors]
+    console.log(chosenVectors)
+  }
+
   const restart = () => {
     setScore(0)
     setMoves(0)
@@ -82,7 +101,7 @@ const App = () => {
         id: idx,
         clicked: false,
         complete: false,
-        vector: String(idx % 8),
+        vector: idx % 8,
       })),
     )
   }
@@ -94,7 +113,7 @@ const App = () => {
           id: idx,
           clicked: false,
           complete: false,
-          vector: String(idx % 8),
+          vector: idx % 8,
         })),
       )
   }, [width])

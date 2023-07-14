@@ -1,5 +1,6 @@
 import './GameItem.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
+import { vectorIcons } from '../../utils/IconsBlock'
 
 export const GameItem = ({ id, vector, complete, clicked, onClick }) => {
   const { width } = useWindowDimensions()
@@ -14,9 +15,8 @@ export const GameItem = ({ id, vector, complete, clicked, onClick }) => {
         complete ? 'item-complete' : ''
       }`}
       onClick={handleOnClick}>
-      {' '}
       {vector}
-      <div>{/*<Meteor width={50} height={50} fill={'white'} />*/}</div>
+      {/*<div>{vectorIcons.find((item) => item.vector === vector).icon}</div>*/}
     </div>
   )
 }
