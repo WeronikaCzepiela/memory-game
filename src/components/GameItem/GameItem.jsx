@@ -15,13 +15,12 @@ export const GameItem = ({ id, vector, complete, clicked, onClick }) => {
         complete ? 'item-complete' : ''
       }`}
       onClick={handleOnClick}>
-      {vector}
-      {/*<div>{vectorIcons.find((item) => item.vector === vector).icon}</div>*/}
+      <div
+        className={`vector ${clicked ? 'vector-clicked' : ''} ${
+          complete ? 'vector-complete' : ''
+        }`}>
+        {vectorIcons.find((item) => item.vector === vector).icon}
+      </div>
     </div>
   )
 }
-
-// className={`vector ${clicked ? 'vector-clicked' : ''} ${
-//     complete ? 'vector-complete' : ''
-// }`}>
-// {vector}

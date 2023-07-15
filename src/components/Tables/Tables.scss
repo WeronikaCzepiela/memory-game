@@ -10,6 +10,12 @@
   height: 65px;
   display: flex;
   justify-content: center;
+
+  &-desktop {
+    width: 396px;
+    height: 110px;
+    display: block;
+  }
 }
 
 .text {
@@ -17,6 +23,10 @@
   font-size: 24px;
   padding-top: 18px;
   margin: 0;
+
+  &-desktop {
+    padding-top: 15px;
+  }
 }
 
 .number {
@@ -25,19 +35,14 @@
   font-size: 24px;
   padding-top: 18px;
   padding-left: 10px;
+
+  &-desktop {
+    font-size: 36px;
+    padding-top: 10px;
+  }
 }
 
-.tables-desktop {
-  width: 396px;
-  height: 110px;
-  display: block;
-}
 
-.text-desktop {
-  padding-top: 15px;
-}
 
-.number-desktop {
-  font-size: 36px;
-  padding-top: 10px;
-}
+
+

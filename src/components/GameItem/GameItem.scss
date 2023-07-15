@@ -8,29 +8,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &-clicked {
+    background-color: #853F5D;
+  }
+
+  &-complete {
+    opacity: 0;
+    user-select: none;
+    cursor: auto;
+  }
+
+
 }
+
 .icon {
   width: 64px;
   height: 64px;
 }
-.item-clicked {
-  background-color: #853F5D;
-}
 
-.item-complete {
-  opacity: 0;
-  user-select: none;
-  cursor: auto;
-}
 
 .vector {
   opacity: 0;
-}
 
-.vector-complete {
-  opacity: 0;
-}
+  &-complete {
+    opacity: 0;
+  }
 
-.vector-clicked {
-  opacity: 100;
+  &-clicked {
+    opacity: 100;
+  }
 }

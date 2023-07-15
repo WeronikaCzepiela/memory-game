@@ -31,23 +31,23 @@
     width: 38px;
     height: 40px;
   }
-}
 
+  &-desktop {
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0 35px 5px 0;
+    gap: 16px;
+    p {
+      font-size: 31px;
+    }
 
-.accounts-desktop {
-  justify-content: flex-end;
-  margin: 0;
-  padding: 0 35px 5px 0;
-  //margin-right: 35px;
-  gap: 16px;
-//padding-bottom: 15px;
-  p {
-    font-size: 31px;
-  }
-
-  img {
-    width: 64px;
-    height: 68px;
+    img {
+      width: 64px;
+      height: 68px;
+    }
   }
 }
+
+
+
 

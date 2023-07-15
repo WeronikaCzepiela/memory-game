@@ -9,7 +9,7 @@ export const ResetButton = ({ restart }) => {
 
   return (
     <button
-      className={`restart-button ${width > 600 && 'reset-button-desktop'}`}
+      className={`restart-button ${width > 600 && 'restart-button-desktop'}`}
       onClick={handleReset}>
       <p>Restart</p>
     </button>

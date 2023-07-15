@@ -5,6 +5,9 @@ import { Game } from './components/Game/Game'
 import { useEffect, useState } from 'react'
 import { useWindowDimensions } from './utils/hookes/useWindowDimensions'
 import { vectorIcons } from './utils/IconsBlock'
+import { click } from '@testing-library/user-event/dist/click'
+
+let isGameBlocked = false
 
 const App = () => {
   const { width } = useWindowDimensions()
@@ -13,13 +16,10 @@ const App = () => {
   const [score, setScore] = useState(0)
 
   const onClick = (vector, id, complete) => {
+    const blocksWithUpdatedClicks = changeBlockStatusOnClicked(id)
+    const blocksWith = changeStateClickedBlock(vector, id, blocksWithUpdatedClicks, complete)
+    setBlocks(blocksWith)
     updateMoves(complete)
-    let updatedBlocks
-    updatedBlocks = changeBlockOnClicked(id)
-    // updatedBlocks = setTimeout(removeCompletedBlocks, 3000, vector, id, updatedBlocks)
-    updatedBlocks = removeCompletedBlocks(vector, id, updatedBlocks)
-    setBlocks(updatedBlocks)
-    getVector()
   }
 
   const updateMoves = (complete) => {
@@ -28,7 +28,39 @@ const App = () => {
     }
   }
 
-  const changeBlockOnClicked = (id) => {
+  // TODO
+  const areTwoBlocksVisible = (clickedBlock) => {
+    const updatedMoves = moves + 1
+    return updatedMoves % 2 === 0 && clickedBlock.length !== 0
+  }
+
+  const areTwoClickedBlocksSame = (updatedBlocks, clickedBlock) => {
+    return clickedBlock[0].vector === clickedBlock[1].vector
+  }
+
+  const markSelectedBlocksAsCompleted = (updatedBlocks, clickedBlock) => {
+    setScore(score + 1)
+    return updatedBlocks.map((block) => {
+      if (block.id === clickedBlock[0].id || block.id === clickedBlock[1].id) {
+        return {
+          ...block,
+          complete: true,
+        }
+      }
+      return block
+    })
+  }
+
+  const unmarkSelectedBlocksAsClicked = (updatedBlocks) => {
+    return updatedBlocks.map((block) => {
+      return {
+        ...block,
+        clicked: false,
+      }
+    })
+  }
+
+  const changeBlockStatusOnClicked = (id) => {
     let newBlocks
     newBlocks = blocks.map((block) => {
       if (block.id === id) {
@@ -42,31 +74,19 @@ const App = () => {
     return newBlocks
   }
 
-  const removeCompletedBlocks = (vector, id, updatedBlocks) => {
-    const updatedMoves = moves + 1
+  const changeStateClickedBlock = (vector, id, updatedBlocks, complete) => {
     let newBlocks = []
     const clickedBlock = updatedBlocks.filter((block) => block.clicked && !block.complete)
-    if (updatedMoves % 2 === 0 && clickedBlock.length !== 0) {
-      if (clickedBlock[0].vector === clickedBlock[1].vector) {
-        setScore(score + 1)
-        newBlocks = updatedBlocks.map((block) => {
-          if (block.id === clickedBlock[0].id || block.id === clickedBlock[1].id) {
-            return {
-              ...block,
-              complete: true,
-            }
-          }
-          return block
-        })
-      } else {
-        newBlocks = updatedBlocks.map((block) => {
-          return {
-            ...block,
-            clicked: false,
-          }
-        })
+    if (!complete) {
+      if (areTwoBlocksVisible(clickedBlock)) {
+        if (areTwoClickedBlocksSame(updatedBlocks, clickedBlock)) {
+          newBlocks = markSelectedBlocksAsCompleted(updatedBlocks, clickedBlock)
+        } else {
+          newBlocks = unmarkSelectedBlocksAsClicked(updatedBlocks)
+        }
+        return newBlocks
       }
-      return newBlocks
+      return updatedBlocks
     }
     return updatedBlocks
   }
@@ -76,24 +96,24 @@ const App = () => {
     else return 16
   }
 
-  const getVector = () => {
-    const length = 8 //TODO
-    let chosenVectors = Array.from({ length: 1 }).map(
-      () => vectorIcons[Math.floor(Math.random() * vectorIcons.length)].vector,
-    )
-    while (chosenVectors.length !== length) {
-      const randomVector = String(
-        vectorIcons[Math.floor(Math.random() * vectorIcons.length)].vector,
-      )
-      if (chosenVectors.filter((element) => element === randomVector).length === 0) {
-        chosenVectors.push(randomVector)
+  const getVectors = (length) => {
+    let newChosenVectors = []
+
+    while (newChosenVectors.length < length / 2) {
+      const randomVector = vectorIcons[Math.floor(Math.random() * vectorIcons.length)].vector
+      if (newChosenVectors.filter((element) => element === randomVector).length === 0) {
+        newChosenVectors.push(randomVector)
       }
+      console.log(newChosenVectors.length)
     }
-    chosenVectors = [...chosenVectors, ...chosenVectors]
-    console.log(chosenVectors)
+    newChosenVectors = [...newChosenVectors, ...newChosenVectors]
+    newChosenVectors.sort(() => Math.random() - 0.5)
+    return newChosenVectors
   }
 
   const restart = () => {
+    const length = lengthOfArray()
+    const newChosenVectors = getVectors(length)
     setScore(0)
     setMoves(0)
     setBlocks(
@@ -101,19 +121,21 @@ const App = () => {
         id: idx,
         clicked: false,
         complete: false,
-        vector: idx % 8,
+        vector: newChosenVectors[idx],
       })),
     )
   }
 
   useEffect(() => {
+    const length = lengthOfArray()
+    const newChosenVectors = getVectors(length)
     if (width && !blocks.length)
       setBlocks(
-        Array.from({ length: lengthOfArray() }).map((item, idx) => ({
+        Array.from({ length: length }).map((item, idx) => ({
           id: idx,
           clicked: false,
           complete: false,
-          vector: idx % 8,
+          vector: newChosenVectors[idx],
         })),
       )
   }, [width])

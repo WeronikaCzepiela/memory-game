@@ -5,11 +5,12 @@
   gap: 15px;
   align-items: center;
   padding-top: 30px;
+
+  &-desktop {
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    padding-top: 20px;
+  }
 }
 
-.header-desktop {
-  flex-direction: row;
-  gap: 30px;
-  justify-content: center;
-  padding-top: 20px;
-}

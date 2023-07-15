@@ -10,12 +10,20 @@
   display: flex;
   justify-content: center;
 }
+.tables-desktop {
+  width: 396px;
+  height: 110px;
+  display: block;
+}
 
 .text {
   font-family: Roboto;
   font-size: 24px;
   padding-top: 18px;
   margin: 0;
+}
+.text-desktop {
+  padding-top: 15px;
 }
 
 .number {
@@ -25,17 +33,6 @@
   padding-top: 18px;
   padding-left: 10px;
 }
-
-.tables-desktop {
-  width: 396px;
-  height: 127px;
-  display: block;
-}
-
-.text-desktop {
-  padding-top: 25px;
-}
-
 .number-desktop {
   font-size: 36px;
   padding-top: 10px;
