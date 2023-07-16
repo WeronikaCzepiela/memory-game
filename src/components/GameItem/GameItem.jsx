@@ -1,6 +1,7 @@
 import './GameItem.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
-import { vectorIcons } from '../../utils/IconsBlock'
+import { vectorIcons } from '../../utils/VectorIcons'
+import { dimension } from '../../utils/Dimension'
 
 export const GameItem = ({ id, vector, complete, clicked, onClick }) => {
   const { width } = useWindowDimensions()
@@ -11,7 +12,7 @@ export const GameItem = ({ id, vector, complete, clicked, onClick }) => {
 
   return (
     <div
-      className={`item ${width > 600 && 'item-desktop'} ${clicked ? 'item-clicked' : ''} ${
+      className={`item ${width > dimension() && 'item-desktop'} ${clicked ? 'item-clicked' : ''} ${
         complete ? 'item-complete' : ''
       }`}
       onClick={handleOnClick}>

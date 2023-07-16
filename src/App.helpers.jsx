@@ -1,4 +1,4 @@
-import { vectorIcons } from './utils/IconsBlock'
+import { vectorIcons } from './utils/VectorIcons'
 
 export const areTwoClickedBlocksSame = (updatedBlocks, clickedBlock) => {
   return clickedBlock[0].vector === clickedBlock[1].vector
@@ -13,16 +13,6 @@ export const unmarkSelectedBlocksAsClicked = (updatedBlocks) => {
   })
 }
 
-export const getNewArray = (length) => {
-  const newChosenVectors = getVectors(length)
-  return Array.from({ length: length }).map((item, idx) => ({
-    id: idx,
-    clicked: false,
-    complete: false,
-    vector: newChosenVectors[idx],
-  }))
-}
-
 export const getVectors = (length) => {
   let newChosenVectors = []
 
@@ -35,4 +25,33 @@ export const getVectors = (length) => {
   newChosenVectors = [...newChosenVectors, ...newChosenVectors]
   newChosenVectors.sort(() => Math.random() - 0.5)
   return newChosenVectors
+}
+
+export const getNewArray = (length) => {
+  const newChosenVectors = getVectors(length)
+  return Array.from({ length: length }).map((item, idx) => ({
+    id: idx,
+    clicked: false,
+    complete: false,
+    vector: newChosenVectors[idx],
+  }))
+}
+
+export const changeBlockStatusOnClicked = (id, blocks) => {
+  let newBlocks
+  newBlocks = blocks.map((block) => {
+    if (block.id === id) {
+      return {
+        ...block,
+        clicked: !block.clicked,
+      }
+    }
+    return block
+  })
+  return newBlocks
+}
+
+export const areTwoBlocksVisible = (clickedBlock, moves) => {
+  const updatedMoves = moves + 1
+  return updatedMoves % 2 === 0 && clickedBlock.length !== 0
 }

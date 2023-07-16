@@ -1,5 +1,6 @@
 import './ResetButton.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
+import { dimension } from '../../utils/Dimension'
 
 export const ResetButton = ({ restart }) => {
   const { width } = useWindowDimensions()
@@ -9,7 +10,7 @@ export const ResetButton = ({ restart }) => {
 
   return (
     <button
-      className={`restart-button ${width > 600 && 'restart-button-desktop'}`}
+      className={`restart-button ${width > dimension() && 'restart-button-desktop'}`}
       onClick={handleReset}>
       <p>Restart</p>
     </button>
