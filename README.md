@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Memory Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web-based application that allows users to exercise their memory.
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+The application consists of several elements. At the top of the page, tables are displayed showing the score and the number of moves made.  When the application is running on a laptop, for example, there is also a reset button at the top of the page, which allows you to reset the game and start over. In the center are the blocks. Each of them is the same size and color. Depending on the size of the screen on which the game is displayed, either 16 or 32 elements are generated. By clicking on one block, it automatically flips over showing a random picture. If the next block you click on hides the same icon underneath, both blocks disappear, and the number of points increases by one. If, on the other hand, the icons are different, the blocks flip over, thus covering the icons. The game is to pair all the blocks with the least number of moves.
+The icons are chosen from the 30 available. Each refresh or reset of the page generates a new set of icons.
+At the bottom of the page are references to the author's accounts. If the application is running at a lower screen resolution than 600 pixels, a reset button is also at the bottom of the page.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Each move by the user is counted, and the current number of moves is displayed at the top of the page.
+* The number of correctly reversed blocks is also counted and displayed.
+* The reset button changes its appearance when you hover over it or click on it. It allows you to reload the game.
+* The number of blocks depends on the width of the screen on which the page is turned on. When the width is greater than 600, then 32 blocks are generated. Otherwise - 16.
+* After clicking on the block, a white icon appears. The color of the clicked block also changes.
+* When two blocks are clicked, the user has 2 seconds to register the icon shown.
+* Icons are randomized from 30 available icons every time the page is reset/refreshed.
+* When you click on the graphics at the bottom of the page, the author's account opens in a new tab.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Application layout
 
-### `npm test`
+* Below are screenshots showing how the application looks depending on the width of the screen.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="./images/start.png">
 
-### `npm run build`
+* During the game.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="images/game.png">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Changing the appearance of the 'Restart' button.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="images/restart-button.png">
