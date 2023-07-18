@@ -14,7 +14,7 @@ export const Accounts = ({ restart }) => {
       <div className={`accounts ${width > dimension() && 'accounts-desktop'}`}>
         <p>Check my accounts</p>
         <a target={'_blank'} href={'https://github.com/WeronikaCzepiela'}>
-          <img src={GitHub} />{' '}
+          <img src={GitHub} />
         </a>
         <a target={'_blank'} href={'https://www.linkedin.com/in/--weronika-czepiela/'}>
           <img src={LinkdedIn} />
