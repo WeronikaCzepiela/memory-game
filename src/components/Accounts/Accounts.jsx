@@ -1,5 +1,5 @@
 import GitHub from './images/GitHub.png'
-import LinkdedIn from './images/LinkedIn.png'
+import LinkedIn from './images/LinkedIn.png'
 import './Accounts.scss'
 import { useWindowDimensions } from '../../utils/hookes/useWindowDimensions'
 import { ResetButton } from '../ResetButton/ResetButton'
@@ -17,7 +17,7 @@ export const Accounts = ({ restart }) => {
           <img src={GitHub} />
         </a>
         <a target={'_blank'} href={'https://www.linkedin.com/in/--weronika-czepiela/'}>
-          <img src={LinkdedIn} />
+          <img src={LinkedIn} />
         </a>
       </div>
     </div>
