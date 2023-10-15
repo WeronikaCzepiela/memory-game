@@ -1,6 +1,6 @@
 # Memory Game
 
-A web-based application that allows users to exercise their memory.
+A web-based application that allows users to exercise their memory. 
 
 ## Description
 
