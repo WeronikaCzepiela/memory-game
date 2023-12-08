@@ -32,3 +32,7 @@ At the bottom of the page are references to the author's accounts. If the applic
 * Changing the appearance of the 'Restart' button.
 
 <img src="images/restart-button.png">
+
+##  How to run?
+
+Just paste in your terminal 'npm start'
