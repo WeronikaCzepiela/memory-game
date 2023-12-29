@@ -27,7 +27,6 @@ const App = () => {
   }
 
   const lengthOfArray = () => {
-console.log('jaaa')
     if (width > 600) return 32
     else return 16
   }
