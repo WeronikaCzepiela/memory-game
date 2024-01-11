@@ -2,6 +2,10 @@
 
 A web-based application that allows users to exercise their memory. 
 
+## See the website
+
+[Link](https://weronikaczepiela.github.io/memory-game/)
+
 ## Description
 
 The application consists of several elements. At the top of the page, tables are displayed showing the score and the number of moves made.  When the application is running on a laptop, for example, there is also a reset button at the top of the page, which allows you to reset the game and start over. In the center are the blocks. Each of them is the same size and color. Depending on the size of the screen on which the game is displayed, either 16 or 32 elements are generated. By clicking on one block, it automatically flips over showing a random picture. If the next block you click on hides the same icon underneath, both blocks disappear, and the number of points increases by one. If, on the other hand, the icons are different, the blocks flip over, thus covering the icons. The game is to pair all the blocks with the least number of moves.
