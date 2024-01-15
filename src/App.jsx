@@ -35,6 +35,7 @@ const App = () => {
     setScore(score + 1)
     return updatedBlocks.map((block) => {
       if (block.id === clickedBlock[0].id || block.id === clickedBlock[1].id) {
+
         return {
           ...block,
           complete: true,
