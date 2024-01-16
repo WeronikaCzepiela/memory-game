@@ -4,6 +4,7 @@ A web-based application that allows users to exercise their memory.
 
 ## See the website
 
+Click the link if you want to see the website:
 [Link](https://weronikaczepiela.github.io/memory-game/)
 
 ## Description
