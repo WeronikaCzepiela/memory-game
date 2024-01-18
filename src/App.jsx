@@ -24,8 +24,7 @@ const App = () => {
     if (!complete) {
       setMoves(moves + 1)
     }
-  }
-
+ } 
   const lengthOfArray = () => {
     if (width > 600) return 32
     else return 16
